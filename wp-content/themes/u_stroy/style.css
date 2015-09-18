@@ -27,6 +27,20 @@
   font-style: normal;
   font-weight: normal;
 }
+
+* {
+    box-sizing: border-box;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 *::-webkit-input-placeholder {
   color: #666;
   opacity: 1;
