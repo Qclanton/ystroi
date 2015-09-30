@@ -1,0 +1,53 @@
+.slider-wrapper {
+    display: block;
+    margin: 0 auto;
+	clear: both;
+	position: relative;
+	padding: 0 120px;
+}
+
+.carousel-slide {
+	height: 105px;
+	width: 155px;
+	margin: 0 10px;
+}
+
+
+.slider-wrapper--inner {
+    border: 1px solid #b3b3b3;
+    padding: 10px;
+    text-align: center;
+	position: relative;
+}
+
+
+.carousel-arrows {
+	position: absolute;
+	width: 100%;
+	top: 40%;
+}
+.carousel-arrows > .carousel-back {
+	background-image: url("../images/arrow_prev.png");
+	background-repeat: no-repeat;
+	cursor: pointer;
+	display: block;
+	left: 0;
+	position: absolute;
+	text-indent: 100%;
+	overflow: hidden;
+	width: 20px;
+	height: 38px;
+}
+.carousel-arrows > .carousel-forward {
+	background-image: url("../images/arrow_next.png");
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	display: block;
+	height: 38px;
+	position: absolute;
+	right: 20px;
+	text-indent: 100%;
+	width: 20px;
+	overflow: hidden;
+}

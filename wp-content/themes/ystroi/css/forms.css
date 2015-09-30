@@ -1,0 +1,127 @@
+.universal_line__wrapper {
+	padding: 5px 0;
+	text-align: left;
+}
+
+.universal_line__wrapper > textarea,
+.universal_line__wrapper > input {
+	text-align: center;
+	font-size: 16px;
+	color: #707070;
+	display: inline-block;
+	vertical-align: top;
+	width: 90%;
+	max-width: 350px;
+	border: 1px solid #b3b3b3;
+	background-color: #fff;
+	padding: 10px;
+}
+
+.universal_line__wrapper > input.shorter_line {
+	width: 77%;
+}
+
+.universal_line__wrapper > textarea {
+	height: 120px;
+	resize: none;
+}
+
+.form__checker {
+	background-color: #fff;
+	background-image: url("../images/check_sprite.png");
+	background-position: left 3px top 11px;
+	background-repeat: no-repeat;
+	border: 1px solid #b3b3b3;
+	display: inline-block;
+	float: right;
+	height: 41px;
+	vertical-align: top;
+	width: 30px;
+	position: relative;
+	z-index: 1;
+}
+
+.form__checker.required_filled {
+	background-position: left -25px top 11px;
+}
+
+input.form__checker-indicator--real {
+	position: absolute;
+	z-index: -5;
+	opacity: 0;
+}
+
+.required_note {
+	font-size: 12px;
+	left: -6%;
+	position: relative;
+	text-align: center;
+	color: #707070;
+	padding: 0;
+}
+
+.form__file {
+	background-color: #ff0000;
+	background-image: url("../images/attached_icon.png");
+	background-position: left 6px top 9px;
+	background-repeat: no-repeat;
+	border: 1px solid #b3b3b3;
+	display: inline-block;
+	float: left;
+	height: 41px;
+	vertical-align: top;
+	width: 40px;
+	margin-right: 10px;
+}
+
+.universal_line__wrapper > input.form_submit__button {
+	background-color: #ff0000;
+	border-color: #ff6666 #9c0000 #9c0000 #ff6666;
+	border-radius: 2px;
+	border-style: solid;
+	border-width: 1px;
+	color: #fff;
+	display: block;
+	font-size: 22px;
+	font-weight: bold;
+	margin: 0 auto;
+	min-width: 220px;
+	width: 60%;
+}
+
+.form_submit__button:hover {
+	cursor: pointer;
+}
+.form_button_green {
+	background-color: #005555;
+	border-color: #589090 #003333 #003333 #589090;
+	border-radius: 2px;
+	border-style: solid;
+	border-width: 1px;
+	color: #fff;
+	display: block;
+	font-size: 12px;
+	padding: 5px 2px;
+	text-align: center;
+	width: 26%;
+}
+
+.line_wrapper--white--inner {
+	background-color: #fff;
+	border: 1px solid #b3b3b3;
+	color: #3366bb;
+	display: inline-block;
+	padding: 10px;
+	text-align: center;
+	text-decoration: underline;
+	width: 90%;
+}
+
+.line_wrapper--white--inner:hover {
+	cursor: pointer;
+}
+
+.icon_inner {
+	padding: 30px 0;
+}
+

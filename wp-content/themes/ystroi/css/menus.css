@@ -1,0 +1,26 @@
+.main_menu-wrapper {
+	width: 100%;
+	padding: 0 120px;
+	
+}
+
+.main_menu-wrapper--inner {
+	background-color: rgba(255, 255, 255, 0.7);
+	margin-bottom: -15px;
+}
+
+.main_menu-wrapper--inner ul > li{
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0;
+}
+
+.main_menu-wrapper--inner ul > li > a {
+    color: #000;
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 30px;
+    text-decoration: underline;
+    z-index: 3;
+}
