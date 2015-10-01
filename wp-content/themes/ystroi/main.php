@@ -266,7 +266,19 @@
                 </div>
                 <div class="layout__big_col_half layout__big_col_half--second">
                     <h3 class="title--black title--padding">Эскиз планировки онлайн</h3>
-                    <video src="/wp-content/uploads/1.mp4" poster="http://ystroi.com/wp-content/uploads/2015/07/uvid2.jpg" controls="controls" width="450" height="260"></video>
+                    <video 
+                        id="second-video"
+                        class="main-video"
+                        src="<?= get_template_directory_uri() ?>/video/1.mp4" 
+                        poster="http://ystroi.com/wp-content/uploads/2015/07/uvid2.jpg" 
+                        width="450" 
+                        height="260"
+                    ></video>
+                    <div class="manage-video">
+                        <a class="video-button paused" data-action="play/pause" data-video-id="second-video" href="#">Play/Pause</a>
+                        <progress  data-video-id="second-video" min="0" max="100" value="0"></progress>
+                        <a class="video-button" data-action="fullscreen" data-video-id="second-video" href="#">Fullscreeen</a>
+                    </div>
                 </div>
             </div>
             <div class="main_menu-wrapper">
