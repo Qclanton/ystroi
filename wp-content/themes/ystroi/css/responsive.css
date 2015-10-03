@@ -1,6 +1,4 @@
-@-viewport {  
-    width: device-width;  
-}
+
 @media all and (max-width: 1024px) {
     body {
         min-width: 720px;
@@ -111,6 +109,15 @@
 
 
 @media (max-width: 1025px) {
+	
+	.page__universal-two_cols--wrapper.page__universal-two_cols--inner-wrapper {
+		padding: 0 !important;
+	}
+	
+	.layout__col_half.layout__col_half--second {
+		float: none !important;
+	}
+	
 	.content_block--wrapper.content_block--wrapper--simple {
 		display: inline-block !important;
 	}
