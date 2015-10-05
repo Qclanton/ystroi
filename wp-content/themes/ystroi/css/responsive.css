@@ -110,6 +110,10 @@
 
 @media (max-width: 1025px) {
 	
+	.menu-main-container > ul {
+		text-align: center;
+	}
+	
 	.page__universal-two_cols--wrapper.page__universal-two_cols--inner-wrapper {
 		padding: 0 !important;
 	}
@@ -132,6 +136,24 @@
 	.head-universal__col_sec--popup {
 		position: relative !important;
 		margin-top: 0;
+	}
+	
+	.gallery--item {
+		display: block !important;
+		float: none !important;
+		margin-bottom: 20px;
+	}
+	
+	.carousel-arrows {
+		top: 55% !important;
+	}
+	
+	.btn_top {
+		right: 0 !important;
+		
+ 	}
+	.btn_top > img {
+		height: 30px;
 	}
 }
 	
