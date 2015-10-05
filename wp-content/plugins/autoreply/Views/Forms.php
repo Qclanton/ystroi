@@ -3,20 +3,20 @@
 
     <form method="POST" action="">
         <input type="hidden" name="action" value="set">
-        
+
         <!-- Tabs navigation -->
         <h2 class="nav-tab-wrapper">
-            <? foreach ($forms as $name=>$form) { ?>
+            <?php foreach ($forms as $name=>$form) { ?>
                 <a href="#" class="nav-tab <?= $activeTab == $name ? "nav-tab-active" : "" ?>" data-tab="<?= $name ?>">
                     <?= $form->title ?>
                 </a>
-            <? } ?> 
+            <?php } ?> 
         </h2>
         
         
         <!-- Tabs content -->
         <div class="tabs-wrapper">
-            <? foreach ($forms as $name=>$form) { ?>
+            <?php foreach ($forms as $name=>$form) { ?>
                 <!-- Tab '<?= $form->name ?>'-->
                 <div class="tab-content" data-tab="<?= $name ?>" <?= $activeTab == $name ? "" : "style='display:none'" ?>>
                     <table class="form-table">
@@ -41,7 +41,7 @@
                                     <label for="options[forms][<?= $form->name ?>][text]">Текст</label>
                                 </th>
                                 <td>
-                                    <? 
+                                    <?php 
                                         wp_editor(
                                             stripcslashes($form->text),
                                             $name . "-text", 
@@ -56,7 +56,7 @@
                         </tbody>
                     </table>
                 </div>
-            <? } ?>        
+            <?php } ?>        
        </div>
        
        <input type="submit" class="button-primary" value="Сохранить">

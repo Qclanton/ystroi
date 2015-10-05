@@ -12,14 +12,14 @@
         </thead>
         
         <tbody>
-            <? foreach ($customers as $i=>$customer) { ?>
+            <?php foreach ($customers as $i=>$customer) { ?>
                 <tr>                
                     <td><?= $customer->ip_address ?></td>
                     <td><?= $customer->visit_date ?></td>
                     <td><?= $customer->city ?></td>
                     <td><?= $customer->browser ?></td>                    
                 </tr>
-            <? } ?>
+            <?php } ?>
         </tbody>
     </table>
 </div>

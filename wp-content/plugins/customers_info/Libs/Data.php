@@ -1,4 +1,4 @@
-<?
+<?php
 namespace CustomerInfo\Libs;
 
 abstract class Data {
