@@ -3,8 +3,27 @@
         ev.preventDefault();        
         
         var url = '/wp-admin/admin-ajax.php';
-        var data = FormData(this);
-        data.append('action', 'send_partner_form');   
+        var data = new FormData();
+        
+        // Add action for AJAX
+        data.append('action', 'send_main_form');  
+        
+        
+        // Add text fields
+        data.append('main[message]', $(this).find('[name="main[message]"]').val());
+        data.append('main[name]', $(this).find('[name="main[name]"]').val()); 
+        data.append('main[phone]', $(this).find('[name="main[phone]"]').val()); 
+        data.append('main[email]', $(this).find('[name="main[email]"]').val()); 
+
+        
+        
+        // Add files
+        var files = $(this).find('input[type="file"]').prop('files');   
+             
+        $.each(files, function(index, file) { 
+            data.append(index, file);
+        });
+        
         
         // Here will be ajax-function for handle form
         $.ajax({

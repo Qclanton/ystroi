@@ -73,32 +73,5 @@
             ;
         }
         
-    })
-    
-    
-    // For AJAX
-    $('form').on('submit', function(ev) { 
-        ev.preventDefault()
-        
-        
-        // Search file inputs
-        var filesField = $(this).find('input[name="files"]');
-        
-        if (filesField.length > 0) {
-            return;
-        }
-       
-       
-        // Extract files to var 'data';
-        var files = filesField.prop('files');    
-        var data = new FormData();  
-        
-        $.each(files, function(index, file) { 
-            data.append(index, file);
-        });
-
-        
-        
-        // Here will be ajax-function for handle form
     });
 }); })(jQuery);

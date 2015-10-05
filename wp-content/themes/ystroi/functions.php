@@ -113,6 +113,7 @@ add_action("wp_enqueue_scripts", function() {
         wp_enqueue_script("sketch-offer-button-handler", get_template_directory_uri() . "/js/handlers/sketchOfferButtonHandler.js");        
         wp_enqueue_script("free-offer-popup", get_template_directory_uri() . "/js/handlers/freeOfferPopup.js");        
         wp_enqueue_script("info-collector", get_template_directory_uri() . "/js/handlers/infoCollector.js");
+        wp_enqueue_script("main-form-sender", get_template_directory_uri() . "/js/handlers/mainFormSender.js");
         wp_enqueue_script("video-fullsize-controller", get_template_directory_uri() . "/js/handlers/videoFullsizeController.js");  
 	}    
 });
@@ -359,8 +360,9 @@ function sendMinorForm($form_name, array $data) {
     $message = "
 Здравствуйте!
 Клиент воспользовался формой \"{$form_title}\" на сайте \"{$site}.
-
+<br>
 Данные клиента:
+<br><br>
 <table style='border: solid 1px'>
     <thead>
         <tr>
@@ -462,7 +464,6 @@ function sendMainForm(array $data) {
     });
     
     
-    
     // Define properties
     $site = get_option("blogname");
     $name = (isset($data['name']) ? $data['name']: "Системное уведомление");
@@ -472,16 +473,15 @@ function sendMainForm(array $data) {
     
     
     // Attach files
-    $filenames = [];
-    $files_qty = count($_FILES['files']['name']);
-    
-    for ($i=0; $i<$files_qty; $i++) {
+    $attachments = [];
+
+    foreach ($_FILES as $file) {
         // Save file
-        $file_name = WP_CONTENT_DIR . "/uploads/" . basename($_FILES['files'][$i]['name']);
-        move_uploaded_file($_FILES['files'][$i]["tmp_name"], $file_name);
+        $file_name = WP_CONTENT_DIR . "/uploads/" . basename($file['name']);
+        move_uploaded_file($file['tmp_name'], $file_name);
         
         // Set file as attachment
-        $atachments[] = $file_name;
+        $attachments[] = $file_name;   
     }
     
     
@@ -497,8 +497,9 @@ function sendMainForm(array $data) {
     $message = "
 Здравствуйте!
 Клиент воспользовался формой \"{$form_title}\" на сайте \"{$site}.
-
+<br>
 Данные клиента:
+<br><br>
 <table style='border: solid 1px'>
     <thead>
         <tr>
@@ -544,8 +545,8 @@ function sendMainForm(array $data) {
     
     
     // Remove sended files
-    foreach ($atachments as $attachment) {
-        unlink($attachemnt);
+    foreach ($attachments as $attachment) {
+        unlink($attachment);
     }
     
     
@@ -560,10 +561,9 @@ function sendMainFormAjax() {
         die("0");
     }
 
-    
     // Return result
     die((string)sendMainForm($_POST['main']));
 }
 
 add_action("wp_ajax_nopriv_send_main_form", "sendMainFormAjax");
-add_action("wp_ajax_end_main_form", "sendMainFormAjax");
+add_action("wp_ajax_send_main_form", "sendMainFormAjax");

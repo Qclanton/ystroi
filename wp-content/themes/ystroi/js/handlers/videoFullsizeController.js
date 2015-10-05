@@ -47,6 +47,7 @@
                 break;
                 
             case 'fullscreen':
+                
                 console.log('fullscreen pressed');
                 // video.play();
                 break;
