@@ -81,7 +81,7 @@ class Manage
     {
         $default = [
             'forms' => [
-                'callback_form' => ['title'=>"Обратный звонок", 'theme' => "Автоответ", 'text' => ""],
+                'main-free' => ['title'=>"Рассчет с экспертом", 'theme' => "Автоответ", 'text' => ""],
                 'partner_form' => ['title'=>"Партнеры", 'theme' => "Автоответ", 'text' => ""]
             ]
         ];
@@ -112,6 +112,6 @@ class Manage
         
         foreach ($options as $option) {
             delete_option(self::OPTIONS_PREFIX . $option);
-        };        
+        }
     }
 }

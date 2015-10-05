@@ -25,7 +25,7 @@
         });
         
         
-        // Here will be ajax-function for handle form
+        // Send form
         $.ajax({
             url: url,
             type: 'POST',

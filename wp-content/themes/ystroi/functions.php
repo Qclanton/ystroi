@@ -100,6 +100,7 @@ add_action("wp_enqueue_scripts", function() {
     wp_enqueue_script("required-fields-controller", get_template_directory_uri() . "/js/handlers/requiredFieldsController.js");
     wp_enqueue_script("files-buttons-handler", get_template_directory_uri() . "/js/handlers/filesButtonsHandler.js");
     wp_enqueue_script("to-top-scroller", get_template_directory_uri() . "/js/handlers/toTopScroller.js");
+    wp_enqueue_script("main-form-sender", get_template_directory_uri() . "/js/handlers/mainFormSender.js");
     wp_enqueue_script("callback-form-sender", get_template_directory_uri() . "/js/handlers/callbackFormSender.js");
     wp_enqueue_script("partner-form-sender", get_template_directory_uri() . "/js/handlers/partnerFormSender.js");
     
@@ -110,10 +111,10 @@ add_action("wp_enqueue_scripts", function() {
         wp_enqueue_script("lib-browser-definer", get_template_directory_uri() . "/js/libs/browserDefiner.js");
                 
         // Enqueue handlers
+        wp_enqueue_script("free-form-sender", get_template_directory_uri() . "/js/handlers/freeFormSender.js");
         wp_enqueue_script("sketch-offer-button-handler", get_template_directory_uri() . "/js/handlers/sketchOfferButtonHandler.js");        
         wp_enqueue_script("free-offer-popup", get_template_directory_uri() . "/js/handlers/freeOfferPopup.js");        
         wp_enqueue_script("info-collector", get_template_directory_uri() . "/js/handlers/infoCollector.js");
-        wp_enqueue_script("main-form-sender", get_template_directory_uri() . "/js/handlers/mainFormSender.js");
         wp_enqueue_script("video-fullsize-controller", get_template_directory_uri() . "/js/handlers/videoFullsizeController.js");  
 	}    
 });
@@ -351,7 +352,11 @@ function sendMinorForm($form_name, array $data) {
         $form_title = "Партнеры";
     } elseif ($form_name == "callback_form") {
         $form_title = "Обратный звонок";
+    } elseif ($form_name == "main-free") {
+        $form_title = "Бесплатный рассчет с экспертом";
     }
+
+
     
     
     // Create text
@@ -450,6 +455,30 @@ function sendPartnerFormAjax() {
 
 add_action("wp_ajax_nopriv_send_partner_form", "sendPartnerFormAjax");
 add_action("wp_ajax_send_partner_form", "sendPartnerFormAjax");
+
+// Send free form thru AJAX
+function sendFreeFormAjax() {
+    if (!isset($_POST['main-free']) || !isset($_POST['main-free']['email'])) {
+        die("0");
+    }
+    
+    
+    // Send data to admin
+    $result = sendMinorForm("main-free", $_POST['main-free']);
+    
+    
+    // Reply to partner
+    if ($result) {
+        $result = sendAutoReply("main-free", $_POST['main-free']['email']);
+    }
+    
+    
+    // Return result
+    die((string)$result);
+}    
+
+add_action("wp_ajax_nopriv_send_free_form", "sendFreeFormAjax");
+add_action("wp_ajax_send_free_form", "sendFreeFormAjax");
 
 
 
