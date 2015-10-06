@@ -13,6 +13,7 @@ if (function_exists("register_nav_menus")) {
 		register_nav_menus([
 			'top-menu' => "Top Menu",
 			'main-menu' => "Main Menu",
+            'inner-menu' => "Inner Menu",
 			'footer_menu' => "Footer Menu"
 		]);
 	});
@@ -116,7 +117,8 @@ add_action("wp_enqueue_scripts", function() {
         wp_enqueue_script("free-offer-popup", get_template_directory_uri() . "/js/handlers/freeOfferPopup.js");        
         wp_enqueue_script("info-collector", get_template_directory_uri() . "/js/handlers/infoCollector.js");
         wp_enqueue_script("video-fullsize-controller", get_template_directory_uri() . "/js/handlers/videoFullsizeController.js");
-        wp_enqueue_script("how-it-works-button-handler", get_template_directory_uri() . "/js/handlers/howItWorksButtonHandler.js");  
+        wp_enqueue_script("how-it-works-button-handler", get_template_directory_uri() . "/js/handlers/howItWorksButtonHandler.js");
+        wp_enqueue_script("gallery-click-handler", get_template_directory_uri() . "/js/handlers/galleryClickHandler.js");
 	}    
 });
 
@@ -351,11 +353,9 @@ function sendMinorForm($form_name, array $data) {
     
     if ($form_name == "partner_form") {
         $form_title = "Партнеры";
-    } elseif ($form_name == "callback_form") {
-        $form_title = "Обратный звонок";
-    } elseif ($form_name == "main-free") {
-        $form_title = "Бесплатный рассчет с экспертом";
-    }
+    } elseif ($form_name == "main") {
+        $form_title = "Главная";
+    } 
 
 
     
@@ -459,19 +459,13 @@ add_action("wp_ajax_send_partner_form", "sendPartnerFormAjax");
 
 // Send free form thru AJAX
 function sendFreeFormAjax() {
-    if (!isset($_POST['main-free']) || !isset($_POST['main-free']['email'])) {
+    if (!isset($_POST['main-free'])) {
         die("0");
     }
     
     
     // Send data to admin
     $result = sendMinorForm("main-free", $_POST['main-free']);
-    
-    
-    // Reply to partner
-    if ($result) {
-        $result = sendAutoReply("main-free", $_POST['main-free']['email']);
-    }
     
     
     // Return result
@@ -579,6 +573,11 @@ function sendMainForm(array $data) {
         unlink($attachment);
     }
     
+    
+    // Reply to partner
+    if ($result) {
+        $result = sendAutoReply("main", $from);
+    }
     
     
     // Return sending result

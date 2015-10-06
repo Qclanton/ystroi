@@ -34,7 +34,7 @@
         
 		<div class="main_menu-wrapper main_menu-wrapper--inside-wrapper">
 			<div class="main_menu-wrapper--inner">
-				<?php wp_nav_menu(['theme_location'=>"main-menu"]); ?>
+				<?php wp_nav_menu(['theme_location'=>"inner-menu"]); ?>
 			</div>
 		</div>
 	</div>

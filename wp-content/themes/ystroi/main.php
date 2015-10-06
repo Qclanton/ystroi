@@ -377,10 +377,10 @@
                 <span>Тип ремонта</span>
                 <select id="repair-type">
                     <option style="display: none" disabled selected>Выберите</option>
-                    <option value="1">1 тип</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
+                    <option value="1">Косметический ремонт</option>
+                    <option value="2">Капитальный ремонт (эконом)</option>
+                    <option value="3">Капитальный ремонт (стандарт)</option>
+                    <option value="4">"Евро" ремонт</option>
                 </select>
                 <span>0 000 руб./м2</span>
             </div>
@@ -390,7 +390,11 @@
                 <span>0 000 руб./м2</span>
             </div>
             <div class="calc_line__wrapper calc_line__wrapper-two-cols">
-                <span>Общая площадь помещений</span>
+                <span>Стоимость черновых материалов</span>
+                <span>0 000 руб./м2</span>
+            </div>
+            <div class="calc_line__wrapper calc_line__wrapper-two-cols">
+                <span>Всего</span>
                 <span>0 000 руб./м2</span>
             </div>
         </div>
@@ -502,6 +506,17 @@
                         }); })(jQuery);
                     </script>
             </div>
+            
+            <!-- Modal box for gallery -->
+            <div style="display: none;">
+                <div id="gallery-modal" class="box-modal">
+                    <div class="box-modal_close arcticmodal-close popup_cell">
+                        <img alt="Close" src="<?= get_template_directory_uri(); ?>/images/close.png">
+                    </div>
+                    <div class="image"></div>
+                </div>
+            </div>
+            
         </div>
     </div>
     <div class="page_img-wrapper">
@@ -530,8 +545,8 @@
                 </form>
             </div>
             <div class="main_menu-wrapper">
-                <div class="main_menu-wrapper--inner">
-                    <?php wp_nav_menu(['theme_location'=>"main-menu"]); ?>
+                <div class="main_menu-wrapper--inner main_menu-wrapper--footer">
+                    <?php wp_nav_menu(['theme_location'=>"footer_menu"]); ?>
                 </div>
             </div>
         </div>

@@ -81,7 +81,7 @@ class Manage
     {
         $default = [
             'forms' => [
-                'main-free' => ['title'=>"Рассчет с экспертом", 'theme' => "Автоответ", 'text' => ""],
+                'main' => ['title'=>"Главная", 'theme' => "Автоответ", 'text' => ""],
                 'partner_form' => ['title'=>"Партнеры", 'theme' => "Автоответ", 'text' => ""]
             ]
         ];
@@ -92,8 +92,8 @@ class Manage
 
         return $value;
     }
-    
-    
+ 
+
     
     
     // Install and uninstall
