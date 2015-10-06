@@ -242,7 +242,7 @@
                             </div>
                         </div>
                         <div class="universal_line__wrapper">
-                            <a class="universal_button universal_button--green" href="#video">Как это работает </a>
+                            <a id="how-it-works" class="universal_button universal_button--green" href="#video">Как это работает </a>
                         </div>
                     </div>
 
@@ -261,9 +261,20 @@
             <div class="page__universal-two_big_cols--wrapper clearfix video_section">
                 <div class="layout__big_col_half">
                     <h3 class="title--black title--padding">О нас</h3>
-                    <video poster="http://ystroi.com/wp-content/uploads/2015/07/uvid2.jpg" controls="controls" width="450" height="260"></video>
-
+                    <video 
+                        id="first-video"
+                        class="main-video"
+                        src="<?= get_template_directory_uri() ?>/video/1.mp4" 
+                        poster="http://ystroi.com/wp-content/uploads/2015/07/uvid2.jpg" 
+                    ></video>
+                    
+                    <div class="manage-video">
+                        <a class="video-button paused" data-action="play/pause" data-video-id="first-video" href="#"></a>
+                        <progress data-video-id="first-video" min="0" max="100" value="0"></progress>
+                        <a class="video-button fullscreen" data-action="fullscreen" data-video-id="first-video" href="#"></a>
+                    </div>
                 </div>
+                
                 <div class="layout__big_col_half layout__big_col_half--second">
                     <h3 class="title--black title--padding">Эскиз планировки онлайн</h3>
                     <video 
@@ -271,8 +282,6 @@
                         class="main-video"
                         src="<?= get_template_directory_uri() ?>/video/1.mp4" 
                         poster="http://ystroi.com/wp-content/uploads/2015/07/uvid2.jpg" 
-                        width="450" 
-                        height="260"
                     ></video>
                     
                     <div class="manage-video">

@@ -115,7 +115,8 @@ add_action("wp_enqueue_scripts", function() {
         wp_enqueue_script("sketch-offer-button-handler", get_template_directory_uri() . "/js/handlers/sketchOfferButtonHandler.js");        
         wp_enqueue_script("free-offer-popup", get_template_directory_uri() . "/js/handlers/freeOfferPopup.js");        
         wp_enqueue_script("info-collector", get_template_directory_uri() . "/js/handlers/infoCollector.js");
-        wp_enqueue_script("video-fullsize-controller", get_template_directory_uri() . "/js/handlers/videoFullsizeController.js");  
+        wp_enqueue_script("video-fullsize-controller", get_template_directory_uri() . "/js/handlers/videoFullsizeController.js");
+        wp_enqueue_script("how-it-works-button-handler", get_template_directory_uri() . "/js/handlers/howItWorksButtonHandler.js");  
 	}    
 });
 

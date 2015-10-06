@@ -9,10 +9,12 @@
             'timeupdate', 
             function() { 
                 var videoId = video.getAttribute('id');
-                var progressBar = document.querySelector('progress[data-video-id="' + videoId +'"]');
+                var progressBar = document.querySelector('progress[data-video-id="' + videoId +'"]');               
                 var percentage = Math.ceil((100 / video.duration) * video.currentTime);
                 
-                progressBar.value = percentage;
+                if (percentage !== null) {   
+                    progressBar.value = percentage;
+                }
             }, 
             false
         );
@@ -56,18 +58,19 @@
                 var closed = (fullscreenModalVideo.html() == '');
                 
                 if (closed) {
-                    // Detect video status
-                    var isVideoPlaying = !video.paused;
-                    
                     // Pause video
                     video.pause();                    
                     
                     // Clone video to the modal box
-                    var fullscreenVideoWrapper = $video.clone();                    
+                    var fullscreenVideoWrapper = $video
+                        .clone()
+                        .removeClass()
+                        .addClass('fullscreen-wrapper')
+                    ;               
                     
                     // Set new id for fullscreen video
                     fullscreenVideoWrapper.find('#' + videoId).attr('id', 'fullscreen-' + videoId);
-                    $('.manage-video > *').attr('data-video-id', 'fullscreen-' + videoId);       
+                    fullscreenVideoWrapper.find('.manage-video > *').attr('data-video-id', 'fullscreen-' + videoId);       
                                 
                     // Put fullscreen video block into modal box
                     fullscreenModalVideo.html('').append(fullscreenVideoWrapper);                    
@@ -76,7 +79,8 @@
                     var fullscreenVideo = document.getElementById('fullscreen-' + videoId);
                     
                     // Set time
-                    fullscreenVideo.currentTime = video.currentTime;
+                    // fullscreenVideo.currentTime = video.currentTime;
+
                    
                     // Open modal window
                     fullscreenModal.arcticmodal({ 
@@ -88,22 +92,30 @@
                             // Pause fullscreen video
                             fullscreenVideo.pause();
                             
+                            // Set status for 'start/pause' button
+                            $(fullscreenVideoWrapper).find('a.video-button[data-action="play/pause"][data-video-id="' + videoId +'"]')
+                                .removeClass('playing')
+                                .addClass('paused')
+                        
                             // Clone time to small video
-                            video.currentTime = fullscreenVideo.currentTime;
-                            
-                            // Close fullscreen
-                            fullscreenModal.arcticmodal('close');
+                            // video.currentTime = fullscreenVideo.currentTime;
                             
                             // Clear block with video
                             fullscreenModalVideo.html('');
                             
-                            // Start small video
-                            if (isFullscreenVideoPlaying) {
-                                video.play(); 
-                            }
+                            // Remove special class
+                            $('.arcticmodal-container').removeClass('fullscreen-container');
                         }
                     });
                     
+                    // Add special class
+                    $('.arcticmodal-container').addClass('fullscreen-container');
+                    
+                    // Set status for 'start/pause' button
+                    $(fullscreenVideoWrapper).find('a.video-button[data-action="play/pause"]')
+                        .removeClass('playing')
+                        .addClass('paused')
+                        
                     // Set new handler for 'start/pause' button
                     $(fullscreenVideoWrapper).find('a.video-button[data-action="play/pause"]').on('click', function(ev) {
                         ev.preventDefault();
@@ -131,23 +143,6 @@
                         
                         fullscreenModal.arcticmodal('close');                        
                     });
-                    
-                    // Draw fullscreen progressbar
-                    video.addEventListener(
-                        'timeupdate', 
-                        function() { 
-                            var progressBar = document.querySelector('progress[data-video-id="fullscreen-' + videoId + '"]');
-                            var percentage = Math.ceil((100 / video.duration) * video.currentTime);
-                            
-                            progressBar.value = percentage;
-                        }, 
-                        false
-                    );
-                    
-                    // Continue playing video
-                    if (isVideoPlaying) { 
-                        fullscreenVideo.play();  
-                    }
                 }              
 
                 break;
