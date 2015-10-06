@@ -197,8 +197,12 @@ page__universal-two_cols--wrapper-red {
 
 .page__universal-two_cols--wrapper.page__universal-two_cols--wrapper-red table > tbody > tr > td:first-child {
 	background-color: #b4b4b4;
+	text-align: left;
 }
 
+.page__universal-two_cols--wrapper.page__universal-two_cols--wrapper-red table > tbody > tr > td {
+	text-align: justify;
+}
 
 
 .page__extra-wrapper--design h1.content_title--small,
