@@ -274,10 +274,21 @@
                         width="450" 
                         height="260"
                     ></video>
+                    
                     <div class="manage-video">
-                        <a class="video-button paused" data-action="play/pause" data-video-id="second-video" href="#">Play/Pause</a>
+                        <a class="video-button paused" data-action="play/pause" data-video-id="second-video" href="#"></a>
                         <progress  data-video-id="second-video" min="0" max="100" value="0"></progress>
-                        <a class="video-button" data-action="fullscreen" data-video-id="second-video" href="#">Fullscreeen</a>
+                        <a class="video-button fullscreen" data-action="fullscreen" data-video-id="second-video" href="#"></a>
+                    </div>
+                </div>
+                
+                <!-- Modal box for custom fullscreen-->
+                <div style="display: none;">
+                    <div class="box-modal fullscreen">
+                        <div class="fullscreen-close box-modal_close arcticmodal-close popup_cell">
+                            <img alt="Close" src="<?= get_template_directory_uri(); ?>/images/close.png">
+                        </div>
+                        <div class="video"></div>
                     </div>
                 </div>
             </div>
