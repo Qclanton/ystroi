@@ -218,3 +218,11 @@ page__universal-two_cols--wrapper-red {
 	padding: 5px 2px;
 	color: #fff;
 }
+
+.answer-wrapper a.question-link {
+	color: #3366bb;
+    font-weight: bold;
+}
+.answer-wrapper a {
+	color: #3366bb !important; 
+}

@@ -83,10 +83,8 @@
 			<p>ООО «Подрядчик» — ремонтные и строительные работы.</p>
 			<p>+7(495) 000-00-00 <br />
 			с 09:00 до 20:00</p>
-		</div>
-		
-	
-	</footer>
+        </div>
+    </footer>
 	<a id="scroller" class="btn_top" href="#" style="display: none">
 		<img alt="home" src="<?= get_template_directory_uri(); ?>/images/home2.png">
 	</a>

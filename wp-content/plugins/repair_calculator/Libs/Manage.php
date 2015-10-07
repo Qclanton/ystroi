@@ -1,10 +1,10 @@
 <?php
-namespace Autoreply\Libs;
+namespace RepairCalculator\Libs;
 
 class Manage
 {
-    const OPTIONS_PREFIX = "autoreply_";
-    const OPTIONS_LIST = "forms";
+    const OPTIONS_PREFIX = "repair_calculator_";
+    const OPTIONS_LIST = "type_coefficient,formulas";
     
     
     // Actions
@@ -22,14 +22,8 @@ class Manage
         // Get options   
         $options = self::getStoredOptions();
         
-        // Define active tab
-        $options->activeTab = (isset($_COOKIE['autoreply-active-tab'])
-            ? $_COOKIE['autoreply-active-tab']
-            : $options->default_tab
-        );           
-        
         // Show content
-        $content = Helper::render(__DIR__ . "/../Views/Forms.php", $options);
+        $content = Helper::render(__DIR__ . "/../Views/Calculator.php", $options);
         echo $content;
     }
     
@@ -69,27 +63,29 @@ class Manage
     }
     
     public static function tuneOptions($options) 
-    {   
-        // Set defualt tab 
-        $tabs = array_keys((array)$options->forms);
-        $options->default_tab = array_shift($tabs);
-        
+    {           
         return $options;
     }
     
     private static function mergeWithDefaultValues($name, $value)
     {
         $default = [
-            'forms' => [
-                'main' => ['title'=>"Главная", 'theme' => "Автоответ", 'text' => ""],
-                'partner_form' => ['title'=>"Партнеры", 'theme' => "Автоответ", 'text' => ""]
+            'type_coefficient' => [
+                '1' => 1,
+                '2' => 2,
+                '3' => 3,
+                '4' => 4
+            ],
+            'formulas' => [
+                'materials' => "{{type_coefficient}}*{{area}}*10000",
+                'summary' => "{{type_coefficient}}*{{area}}*10000*2"
             ]
         ];
         
         if (array_key_exists($name, $default)) {  
             $value = array_replace_recursive($default[$name], (array)$value);
-        }
-
+        } 
+           
         return $value;
     }
  

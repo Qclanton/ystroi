@@ -335,9 +335,11 @@ function sendMinorForm($form_name, array $data) {
     
     if ($form_name == "partner_form") {
         $form_title = "Партнеры";
-    } elseif ($form_name == "main") {
-        $form_title = "Главная";
-    } 
+    } elseif ($form_name == "callback_form") {
+        $form_title = "Обратный звонок";
+    } elseif ($form_name == "main-free") {
+        $form_title = "Бесплатный рассчет с экспертом";
+    }
 
 
     

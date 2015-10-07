@@ -1,5 +1,5 @@
 <?php
-namespace Autoreply\Libs;
+namespace RepairCalculator\Libs;
 
 class Helper 
 {

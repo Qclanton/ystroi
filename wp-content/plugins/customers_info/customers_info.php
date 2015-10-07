@@ -34,7 +34,7 @@ spl_autoload_register(function($class) {
 
 // Enqueue Javascript files
 add_action("admin_enqueue_scripts", function() {
-    wp_enqueue_style("style-customers", plugin_dir_url(__FILE__) . "Views/Css/Customers.css" );
+    wp_enqueue_style("style-customers", plugin_dir_url(__FILE__) . "Views/Css/Customers.css");
     
     wp_enqueue_script("lib-data-tables", plugin_dir_url(__FILE__) . "Views/Js/Libs/jquery.dataTables.min.js", ["jquery"]);
     wp_enqueue_script("customers-table", plugin_dir_url(__FILE__) . "Views/Js/table.js");    

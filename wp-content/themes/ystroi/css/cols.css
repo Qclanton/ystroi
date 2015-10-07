@@ -13,7 +13,7 @@
 	max-width: 510px;
 }
 .page__universal-two_cols--wrapper.page__universal-two_cols--inner-wrapper .content__wrapper p{
-	text-align: justify;
+	text-align: left;
 	color: #000;
 }
 
