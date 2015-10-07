@@ -7,6 +7,12 @@
 	width: 100%;
 }
 
+
+.calc_line__wrapper.calc_line__wrapper--first > select {
+	width: 100%;
+	max-width: 565px;
+}
+
 .calc_line__wrapper.calc_line__wrapper-two-cols {
 	padding: 16px 12px;
 }
