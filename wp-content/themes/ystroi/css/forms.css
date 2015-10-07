@@ -73,6 +73,15 @@ input.form__checker-indicator--real {
 	width: 40px;
 	margin-right: 10px;
 }
+.form__file.form_file--white {
+	background-color: #fff;
+	background-image: url("../images/attached_icon-grey.png");
+	border: medium none;
+	height: 39px;
+	margin-top: 1px;
+	position: absolute;
+	width: 40px;
+}
 
 .universal_line__wrapper > input.form_submit__button {
 	background-color: #ff0000;
