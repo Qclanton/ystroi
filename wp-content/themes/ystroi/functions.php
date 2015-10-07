@@ -44,7 +44,7 @@ function render_template_part($slug, array $data = []){
 
 // Helper of home detection
 function get_site_url_root() {
-	$protocol = (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off' || empty($_SERVER['HTTPS']) ? 'http://' : 'https://');
+	$protocol = (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off" || empty($_SERVER['HTTPS']) ? "http://" : "https://");
 	$name = $_SERVER['SERVER_NAME'];
 	
 	return $protocol . $name;
@@ -59,17 +59,17 @@ function get_site_subfolder() {
 }
 
 function is_home_qs() {
-    return (($_SERVER['QUERY_STRING'] == '') ? true : false);
+    return ($_SERVER['QUERY_STRING'] == '');
 }
 
 function is_home_ru() {
-	$request_uri = str_replace(get_site_subfolder(), '', $_SERVER['REQUEST_URI']);
+	$request_uri = str_replace(get_site_subfolder(), "", $_SERVER['REQUEST_URI']);
 	
-    return (in_array($request_uri, array('/index.php/', '/')) ? true : false);
+    return (in_array($request_uri, ["/index.php/", "/"]));
 }
 
 function is_home_tmpl() {
-    return (is_home_qs() && is_home_ru() ? true: false);
+    return (is_home_qs() && is_home_ru());
 }
 
 
@@ -276,30 +276,12 @@ add_action("wp_ajax_collect_info", "collectInfoAjax");
 
 
 // Minor forms
-function sendAutoReply($form_name, $receiver) {
-    // Check dependencies
-    if (!class_exists("\\Autoreply\\Libs\\Manage")) {
-        return false;
-    }    
-    
-    
-    
-    // Retrieve options
-    $options = \Autoreply\Libs\Manage::getStoredOptions();
-
-    if (!isset($options->forms->{$form_name})) {
-       return false;
-    }
-    
-   
-
-    
+function sendAutoReply($form_name, $receiver) {    
     // Set params for mail
-    $form = $options->forms->{$form_name};
     $from = get_option("admin_email");
     $to = $receiver;
-    $subject = stripcslashes($form->theme);
-    $message = stripcslashes($form->text);
+    $subject = "Автоответ с сайта \"У-Строй\"";
+    $message = render_template_part("mail/{$form_name}");
     
    
     
@@ -311,7 +293,7 @@ function sendAutoReply($form_name, $receiver) {
     
     
     // Create headers
-    $headers[] = "From: asda <{$from}>";
+    $headers[] = "From: Команда сайта У-Строй <{$from}>";
 
 
 
@@ -490,8 +472,8 @@ function sendMainForm(array $data) {
     
     // Define properties
     $site = get_option("blogname");
-    $name = (isset($data['name']) ? $data['name']: "Системное уведомление");
-    $from = (isset($data['email']) && isset($data['name']) ? $data['email']: get_option("admin_email"));
+    $name = "Системное уведомление";
+    $from = (isset($data['email']) ? $data['email'] : get_option("admin_email"));
     $to = get_option("admin_email");
     
     
@@ -576,7 +558,7 @@ function sendMainForm(array $data) {
     
     // Reply to partner
     if ($result) {
-        $result = sendAutoReply("main", $from);
+        $result = sendAutoReply("main_form", $from);
     }
     
     
