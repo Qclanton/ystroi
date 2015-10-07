@@ -339,7 +339,7 @@
                         id="first-video"
                         class="main-video"
                         src="<?= get_template_directory_uri() ?>/video/1.mp4" 
-                        poster="http://ystroi.com/wp-content/uploads/2015/07/uvid2.jpg" 
+                        poster="wp-content/uploads/2015/07/uvid2.jpg" 
                     ></video>
                     
                     <div class="manage-video">
@@ -355,7 +355,7 @@
                         id="second-video"
                         class="main-video"
                         src="<?= get_template_directory_uri() ?>/video/1.mp4" 
-                        poster="http://ystroi.com/wp-content/uploads/2015/07/uvid2.jpg" 
+                        poster="wp-content/uploads/2015/07/uvid2.jpg" 
                     ></video>
                     
                     <div class="manage-video">

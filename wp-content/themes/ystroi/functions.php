@@ -104,6 +104,7 @@ add_action("wp_enqueue_scripts", function() {
     wp_enqueue_script("main-form-sender", get_template_directory_uri() . "/js/handlers/mainFormSender.js");
     wp_enqueue_script("callback-form-sender", get_template_directory_uri() . "/js/handlers/callbackFormSender.js");
     wp_enqueue_script("partner-form-sender", get_template_directory_uri() . "/js/handlers/partnerFormSender.js");
+    wp_enqueue_script("vacancy-form-sender", get_template_directory_uri() . "/js/handlers/vacancyFormSender.js");
     
     // Addtitional scripts for main page
     if (define_template_part() == "main") {
