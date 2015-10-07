@@ -197,7 +197,7 @@
                                         <div class="popup_title-wrapper">
                                             <img class="popup_cell" alt="logo" src="<?= get_template_directory_uri(); ?>/images/logo_small.png">
                                             <h2 class="popup-title popup_cell">Эскизное планирование </h2>
-                                            <div class="popup_cell popup_cell--save" data-title="Сохранить"></div>
+                                            <a class="popup_cell popup_cell--save"  href="<?= get_template_directory_uri(); ?>/docs/agreement.pdf" data-title="Сохранить" download></a>
                                             <a class="popup_cell popup_cell--print"></a>
                                         </div>
                                             <div class="box-modal_close arcticmodal-close popup_cell"><img alt="Close" src="<?= get_template_directory_uri(); ?>/images/close.png"></div>

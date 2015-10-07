@@ -275,13 +275,19 @@ add_action("wp_ajax_collect_info", "collectInfoAjax");
 
 
 
-// Minor forms
+// Forms handlers
 function sendAutoReply($form_name, $receiver) {    
     // Set params for mail
     $from = get_option("admin_email");
     $to = $receiver;
     $subject = "Автоответ с сайта \"У-Строй\"";
-    $message = render_template_part("mail/{$form_name}");
+    
+    $template = (file_exists(__DIR__ . "/mail/{$form_name}.php")
+        ? "mail/{$form_name}"
+        : "mail/default.php"
+    );
+    
+    $message = render_template_part($template);
     
    
     
@@ -297,8 +303,17 @@ function sendAutoReply($form_name, $receiver) {
 
 
 
+    // Attach files
+    $attachments = [];
+    
+    if ($form_name == "main_form") {
+        $attachments = __DIR__ . "/mail/attach/useful.pdf";
+    }
+
+
+
     // Send mail
-    $result = wp_mail($to, $subject, $message, $headers);
+    $result = wp_mail($to, $subject, $message, $headers, $attachments);
 
 
 
@@ -313,159 +328,7 @@ function sendAutoReply($form_name, $receiver) {
     return $result;
 }
 
-function sendMinorForm($form_name, array $data) {
-    // Activate possibility to use HTML in letter
-    add_filter("wp_mail_content_type", function() { 
-        return "text/html";
-    });
-    
-    
-    
-    // Define properties
-    $site = get_option("blogname");
-    $name = (isset($data['name']) ? $data['name']: "Системное уведомление");
-    $from = (isset($data['email']) && isset($data['name']) ? $data['email']: get_option("admin_email"));
-    $to = get_option("admin_email");
-    
-    
-    
-    
-    // Define form title
-    $form_title = "Неизвестная";
-    
-    if ($form_name == "partner_form") {
-        $form_title = "Партнеры";
-    } elseif ($form_name == "callback_form") {
-        $form_title = "Обратный звонок";
-    } elseif ($form_name == "main-free") {
-        $form_title = "Бесплатный рассчет с экспертом";
-    }
-
-
-    
-    
-    // Create text
-    $subject = "Клиент воспользовался формой \"{$form_title}\" на сайте \"{$site}\"";
-    
-    $message = "
-Здравствуйте!
-Клиент воспользовался формой \"{$form_title}\" на сайте \"{$site}.
-<br>
-Данные клиента:
-<br><br>
-<table style='border: solid 1px'>
-    <thead>
-        <tr>
-            <th style='border: solid 1px'>Поле</th>
-            <th style='border: solid 1px'>Значение</th>
-        </tr>
-    </thead>
-    
-    
-    <tbody>
-";
-    
-    foreach ($data as $field=>$value) {
-        $message .= "
-        <tr>
-            <td style='border: solid 1px'>{$field}</td>
-            <td style='border: solid 1px'>{$value}</td>
-        </tr>";
-    }
-    
-    $message .= "
-    </tbody>
-</table>
-";
-
-
-
-    // Create headers
-    $headers[] = "From: {$name} <{$from}>";
-
-
-
-    // Send mail
-    $result = wp_mail($to, $subject, $message, $headers);
-
-
-
-    // Set default settings to other functions
-	remove_filter("wp_mail_content_type", function() { 
-        return "text/html";
-    });
-    
-    
-    
-    // Return sending result
-    return $result;
-}
-
-
-
-
-
-// Send callback form thru AJAX
-function sendCallbackFormAjax() {
-    if (!isset($_POST['callback_form'])) {
-        die(0);
-    }
-    
-    die(sendMinorForm("callback_form", $_POST['callback_form']));
-}    
-
-add_action("wp_ajax_nopriv_send_callback_form", "sendCallbackFormAjax");
-add_action("wp_ajax_send_callback_form", "sendCallbackFormAjax");
-
-// Send partner form thru AJAX
-function sendPartnerFormAjax() {
-    if (!isset($_POST['partner_form']) || !isset($_POST['partner_form']['email'])) {
-        die("0");
-    }
-    
-    
-    // Send data to admin
-    $result = sendMinorForm("partner_form", $_POST['partner_form']);
-    
-    
-    // Reply to partner
-    if ($result) {
-        $result = sendAutoReply("partner_form", $_POST['partner_form']['email']);
-    }
-    
-    
-    // Return result
-    die((string)$result);
-}    
-
-add_action("wp_ajax_nopriv_send_partner_form", "sendPartnerFormAjax");
-add_action("wp_ajax_send_partner_form", "sendPartnerFormAjax");
-
-// Send free form thru AJAX
-function sendFreeFormAjax() {
-    if (!isset($_POST['main-free'])) {
-        die("0");
-    }
-    
-    
-    // Send data to admin
-    $result = sendMinorForm("main-free", $_POST['main-free']);
-    
-    
-    // Return result
-    die((string)$result);
-}    
-
-add_action("wp_ajax_nopriv_send_free_form", "sendFreeFormAjax");
-add_action("wp_ajax_send_free_form", "sendFreeFormAjax");
-
-
-
-
-
-
-// Main form
-function sendMainForm(array $data) {
+function sendForm($form_name, array $data) {
     // Activate possibility to use HTML in letter
     add_filter("wp_mail_content_type", function() { 
         return "text/html";
@@ -475,27 +338,51 @@ function sendMainForm(array $data) {
     // Define properties
     $site = get_option("blogname");
     $name = "Системное уведомление";
-    $from = (isset($data['email']) ? $data['email'] : get_option("admin_email"));
+    $from = get_option("admin_email");
     $to = get_option("admin_email");
     
     
     
     // Attach files
     $attachments = [];
-
-    foreach ($_FILES as $file) {
-        // Save file
-        $file_name = WP_CONTENT_DIR . "/uploads/" . basename($file['name']);
-        move_uploaded_file($file['tmp_name'], $file_name);
-        
-        // Set file as attachment
-        $attachments[] = $file_name;   
+    if (!empty($_FILES)) {
+        foreach ($_FILES as $file) {
+            // Save file
+            $file_name = WP_CONTENT_DIR . "/uploads/" . basename($file['name']);
+            move_uploaded_file($file['tmp_name'], $file_name);
+            
+            // Set file as attachment
+            $attachments[] = $file_name;   
+        }
     }
     
     
     
     // Define form title
-    $form_title = "Главная";
+    switch ($form_name) {
+        case "main_form":
+            $form_title = "Главная";
+            break;
+            
+        case "partner_form":
+            $form_title = "Партнеры";
+            break;
+            
+        case "callback_form":
+            $form_title = "Обратный звонок";
+            break;
+            
+        case "main-free":
+            $form_title = "Бесплатный расчет с экспертом";
+            break;
+            
+        case "vacancy_form":
+            $form_title = "Вакансии";
+            break;
+            
+        default:
+            $form_title = "Неизвестная";
+    }
 
     
     
@@ -553,20 +440,80 @@ function sendMainForm(array $data) {
     
     
     // Remove sended files
-    foreach ($attachments as $attachment) {
-        unlink($attachment);
+    if (!empty($attachments)) {
+        foreach ($attachments as $attachment) {
+            unlink($attachment);
+        }
     }
     
     
     // Reply to partner
-    if ($result) {
-        $result = sendAutoReply("main_form", $from);
+    if ($result && isset($data['email'])) {
+        $result = sendAutoReply($form_name, $data['email']);
     }
     
     
     // Return sending result
     return $result;
 }
+
+
+
+
+
+// Send callback form thru AJAX
+function sendCallbackFormAjax() {
+    if (!isset($_POST['callback_form'])) {
+        die(0);
+    }
+    
+    die(sendForm("callback_form", $_POST['callback_form']));
+}    
+
+add_action("wp_ajax_nopriv_send_callback_form", "sendCallbackFormAjax");
+add_action("wp_ajax_send_callback_form", "sendCallbackFormAjax");
+
+// Send partner form thru AJAX
+function sendPartnerFormAjax() {
+    if (!isset($_POST['partner_form']) || !isset($_POST['partner_form']['email'])) {
+        die("0");
+    }
+    
+    
+    // Send data to admin
+    $result = sendForm("partner_form", $_POST['partner_form']);
+    
+    
+    // Reply to partner
+    if ($result) {
+        $result = sendAutoReply("partner_form", $_POST['partner_form']['email']);
+    }
+    
+    
+    // Return result
+    die((string)$result);
+}    
+
+add_action("wp_ajax_nopriv_send_partner_form", "sendPartnerFormAjax");
+add_action("wp_ajax_send_partner_form", "sendPartnerFormAjax");
+
+// Send free form thru AJAX
+function sendFreeFormAjax() {
+    if (!isset($_POST['main-free'])) {
+        die("0");
+    }
+    
+    
+    // Send data to admin
+    $result = sendForm("main-free", $_POST['main-free']);
+    
+    
+    // Return result
+    die((string)$result);
+}    
+
+add_action("wp_ajax_nopriv_send_free_form", "sendFreeFormAjax");
+add_action("wp_ajax_send_free_form", "sendFreeFormAjax");
 
 // Send main form thru AJAX
 function sendMainFormAjax() {
@@ -575,8 +522,21 @@ function sendMainFormAjax() {
     }
 
     // Return result
-    die((string)sendMainForm($_POST['main']));
+    die((string)sendForm("main_form", $_POST['main']));
 }
 
 add_action("wp_ajax_nopriv_send_main_form", "sendMainFormAjax");
 add_action("wp_ajax_send_main_form", "sendMainFormAjax");
+
+// Send vacancy form thru AJAX
+function sendVacancyFormAjax() {
+    if (!isset($_POST['vacancy'])) {
+        die("0");
+    }
+
+    // Return result
+    die((string)sendForm("vacancy_form", $_POST['vacancy']));
+}
+
+add_action("wp_ajax_nopriv_send_vacancy_form", "sendVacancyFormAjax");
+add_action("wp_ajax_send_vacancy_form", "sendVacancyFormAjax");
