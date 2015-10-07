@@ -445,33 +445,11 @@
         <p>
             *Расчет сметной стоимости ремонта по каждому конкретному Объекту производится до подписания договора подряда.
         </p>
-        <h2 class="title-main_page">Калькулятор укрупненного расчета стоимости ремонта</h2>
-        <div class="wrapper_inner-colored wrapper_inner-colored--dark-grey">
-            <div class="calc_line__wrapper">
-                <span>Тип ремонта</span>
-                <select id="repair-type">
-                    <option style="display: none" disabled selected>Выберите</option>
-                    <option value="1">Косметический ремонт</option>
-                    <option value="2">Капитальный ремонт (эконом)</option>
-                    <option value="3">Капитальный ремонт (стандарт)</option>
-                    <option value="4">"Евро" ремонт</option>
-                </select>
-                <span>0 000 руб./м2</span>
-            </div>
-            <div class="calc_line__wrapper">
-                <span>Общая площадь помещений</span>
-                <input type="number" name="calc[number]" placeholder="1" value="" title="Общая площадь помещений" required="">
-                <span>0 000 руб./м2</span>
-            </div>
-            <div class="calc_line__wrapper calc_line__wrapper-two-cols">
-                <span>Стоимость отделочных материалов</span>
-                <span>0 000 руб./м2</span>
-            </div>
-            <div class="calc_line__wrapper calc_line__wrapper-two-cols">
-                <span>Всего</span>
-                <span>0 000 руб./м2</span>
-            </div>
-        </div>
+        
+        <?php if (class_exists("\\RepairCalculator\\Libs\\Manage")) { ?>
+            <h2 class="title-main_page">Калькулятор укрупненного расчета стоимости ремонта</h2>
+            <?php \RepairCalculator\Libs\Manage::showForm() ?>
+        <?php } ?>
 
     </div>
     <div class="colored-wrapper colored-wrapper--grey colored-line">

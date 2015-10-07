@@ -27,6 +27,14 @@ class Manage
         echo $content;
     }
     
+    public static function showForm()
+    {
+        // Get options   
+        $options = self::getStoredOptions();
+                     
+        echo Helper::render(__DIR__ . "/../Views/Form.php", $options);
+    }
+    
     
     
     
