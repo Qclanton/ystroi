@@ -1,3 +1,6 @@
+// Create container for files
+var attachedFiles = []; // Bad idea, I know;
+
 (function($){ $(function() {
     // Disable text field
     $('.files-text').on('keydown', function(ev) {
@@ -16,6 +19,7 @@
     });
     
     
+    
     // Handle file attachment
     $('input[name="files"]').on('change', function() {
         var id = $(this).attr('id'); 
@@ -23,11 +27,17 @@
         var textField = $('input.files-text[data-input-id="'+id+'"]');
         var listString = '';
         
-        if (textField.length > 0 && files.length > 0) {
-            $.each(files, function(index, file) { 
+        // Attach new files
+        $.each(files, function(index, file) { 
+            attachedFiles.push(file);
+        });
+        
+        // Fill text fields
+        if (textField.length > 0 && attachedFiles.length > 0) {
+            $.each(attachedFiles, function(index, file) { 
                 listString += file.name;
                 
-                if (index < files.length-1) {
+                if (index < attachedFiles.length-1) {
                     listString += '; ';   
                 }
             });
@@ -56,6 +66,7 @@
 
         
         // Remove files
+        attachedFiles = [];
         input.attr('files', false);
         
         

@@ -18,7 +18,11 @@
         
         
         // Add files
-        var files = $(this).find('input[type="file"]').prop('files');   
+        var files = (typeof attachedFiles !== undefined && attachedFiles != []
+            ? attachedFiles
+            : (this).find('input[type="file"]').prop('files')
+        );
+
              
         $.each(files, function(index, file) { 
             data.append(index, file);
