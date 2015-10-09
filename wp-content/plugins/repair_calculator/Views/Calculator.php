@@ -21,7 +21,7 @@
             <tbody>
                 <tr>
                     <th scope="row">
-                        <label for="options[type_coefficient][1]">Косметический ремон</label>
+                        <label for="options[type_coefficient][1]">Косметический ремонт</label>
                     </th>
                     <td>
                         <input 
@@ -63,7 +63,7 @@
                 
                 <tr>
                     <th scope="row">
-                        <label for="options[type_coefficient][4]">"Евро" ремонт</label>
+                        <label for="options[type_coefficient][4]">Евро ремонт</label>
                     </th>
                     <td>
                         <input 

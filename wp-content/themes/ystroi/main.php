@@ -117,7 +117,7 @@
                         <div class="universal_icon universal_icon--loupe"> </div>
                         <div class="content__wrapper">
                             <h1 class="content_title--small">
-                                Нет необходимости контролировать строительный процесс
+                                Контроль строительного процесса
                             </h1>
                             <p>
                                 За качество работ и сроки отвечаем мы.
@@ -455,7 +455,7 @@
     <div class="colored-wrapper colored-wrapper--grey colored-line">
         <div class="page__universal-wrapper">
             <h3 class="title--white">Возникли сложности? <br />
-            Позвоните нам по телефону +7 (000) 000-00-00 мы поможем рассчитать ваш ремонт
+            Позвоните нам по телефону +7 (916) 896-03-90 мы поможем рассчитать ваш ремонт
             </h3>
             
         </div>
@@ -575,12 +575,12 @@
         <div class="page__universal-wrapper">
             <div class="wrapper-padding--bottom">
                 <h2 class="title-main_page">У вас остались вопросы? Напишите нам.</h1>
-                <a class="universal-button red universal-button--small">
+                <a class="universal-button red universal-button--small" href="#calc_main--anchor">
                     <div class="universal-button__wrapper--inner"> Обратная связь </div>
                 </a>
             </div>
             <h1 class="title-main_page">Заказать обратный звонок</h1>
-            <h2 class="title-main_page" style="width:80%;">Оставьте свои данные, мы с вами обязательно свяжемся <br /> Вы можете позвонить нам по телефону +7(000)000-00-00</h1>
+            <h2 class="title-main_page" style="width:80%;">Оставьте свои данные, мы с вами обязательно свяжемся <br /> Вы можете позвонить нам по телефону +7 (916) 896-03-90</h1>
             <div class="page__universal-two_big_cols--wrapper clearfix">
                 <form id="callback_form">
                     <div class="universal_line__wrapper universal_line__wrapper--three-cols clearfix">

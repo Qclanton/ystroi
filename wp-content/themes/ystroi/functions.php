@@ -285,7 +285,7 @@ function sendAutoReply($form_name, $receiver) {
     
     $template = (file_exists(__DIR__ . "/mail/{$form_name}.php")
         ? "mail/{$form_name}"
-        : "mail/default.php"
+        : "mail/default"
     );
     
     $message = render_template_part($template);

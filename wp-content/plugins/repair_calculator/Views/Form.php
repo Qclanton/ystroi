@@ -3,10 +3,10 @@
         <span>Тип ремонта</span>
         <select id="repair-type">
             <option style="display: none" disabled="" selected="">Выберите</option>
-            <option value="1">Косметический ремонт</option>
-            <option value="2">Капитальный ремонт (эконом)</option>
-            <option value="3">Капитальный ремонт (стандарт)</option>
-            <option value="4">"Евро" ремонт</option>
+            <option value="1">Косметический ремонт от 4 000 руб</option>
+            <option value="2">Капитальный ремонт (эконом) от 5 000 руб</option>
+            <option value="3">Капитальный ремонт (стандарт) от 6 000 руб</option>
+            <option value="4">Евро ремонт от 7 500 руб.</option>
         </select>
     </div>
     <div class="calc_line__wrapper">
@@ -44,10 +44,10 @@
         var coefficient = coefficients[type];
         
         // Replace to real data 
-        materials_formula = materials_formula.replace('{{type_coefficient}}', coefficient);
-        materials_formula = materials_formula.replace('{{area}}', area);
-        summary_formula = summary_formula.replace('{{type_coefficient}}', coefficient);
-        summary_formula = summary_formula.replace('{{area}}', area);
+        materials_formula = materials_formula.replace(/{{type_coefficient}}/g, coefficient);
+        materials_formula = materials_formula.replace(/{{area}}/g, area);
+        summary_formula = summary_formula.replace(/{{type_coefficient}}/g, coefficient);
+        summary_formula = summary_formula.replace(/{{area}}/g, area);
 
         // Calc results
         var materials_sum = eval(materials_formula);
