@@ -69,7 +69,7 @@
 			</div>
 			<div class="head-universal__col head-universal__col_last">
 				<p>
-					<strong>+7 (916) 896-03-90</strong> <br />
+					<strong>+7 (916) 972-94-59</strong> <br />                    
 					C 09:00 до 20:00
 				</p>
 			</div>		
@@ -83,7 +83,7 @@
 		<div class="page__universal-wrapper">
 			<div class="page__universal-col--footer">
 				<p>ООО «Подрядчик» — ремонтные и строительные работы.</p>
-				<p>+7 (916) 896-03-90<br />
+				<p>+7 (916) 972-94-59<br />
 				с 09:00 до 20:00</p>
 			</div>
 			<div class="page__universal-col--footer">

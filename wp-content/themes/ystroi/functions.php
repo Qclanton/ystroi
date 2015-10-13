@@ -93,6 +93,7 @@ add_action("wp_enqueue_scripts", function() {
     wp_enqueue_style("slides", get_template_directory_uri() . "/css/slider.css" );
     
     // Enqueue libs
+    wp_enqueue_script("lib-carousel", get_template_directory_uri() . "/js/libs/carousel.js");   
     wp_enqueue_script("lib-anchors", get_template_directory_uri() . "/js/libs/anchors.js");
     wp_enqueue_script("lib-arcticmodal", get_template_directory_uri() . "/js/jquery.arcticmodal-0.3.min.js");    
     
@@ -109,7 +110,6 @@ add_action("wp_enqueue_scripts", function() {
     // Addtitional scripts for main page
     if (define_template_part() == "main") {
         // Enqueue libs
-        wp_enqueue_script("lib-carousel", get_template_directory_uri() . "/js/libs/carousel.js");        
         wp_enqueue_script("lib-browser-definer", get_template_directory_uri() . "/js/libs/browserDefiner.js");
                 
         // Enqueue handlers

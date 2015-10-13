@@ -10,7 +10,7 @@
             function() { 
                 var videoId = video.getAttribute('id');
                 var progressBar = document.querySelector('progress[data-video-id="' + videoId +'"]');               
-                var percentage = Math.ceil((100 / video.duration) * video.currentTime);
+                var percentage = Math.floor((100 / video.duration) * video.currentTime);
                 
                 if (percentage !== null) {   
                     progressBar.value = percentage;

@@ -328,53 +328,7 @@
     
     <div id="video" class="shadow-wrapper--light background-wrapper--2">
         <div class="page__universal-wrapper">
-            <div class="title-wrapper">
-                <h2>Как это работает?</h2>
-                <h3>Узнайте все о нашей компании</h3>
-            </div>
-            <div class="page__universal-two_big_cols--wrapper clearfix video_section">
-                <div class="layout__big_col_half">
-                    <h3 class="title--black title--padding">О нас</h3>
-                    <video 
-                        id="first-video"
-                        class="main-video"
-                        src="<?= get_template_directory_uri() ?>/video/1.mp4" 
-                        poster="wp-content/uploads/2015/07/uvid2.jpg" 
-                    ></video>
-                    
-                    <div class="manage-video">
-                        <a class="video-button paused" data-action="play/pause" data-video-id="first-video" href="#"></a>
-                        <progress data-video-id="first-video" min="0" max="100" value="0"></progress>
-                        <a class="video-button fullscreen" data-action="fullscreen" data-video-id="first-video" href="#"></a>
-                    </div>
-                </div>
-                
-                <div class="layout__big_col_half layout__big_col_half--second">
-                    <h3 class="title--black title--padding">Эскиз планировки онлайн</h3>
-                    <video 
-                        id="second-video"
-                        class="main-video"
-                        src="<?= get_template_directory_uri() ?>/video/1.mp4" 
-                        poster="wp-content/uploads/2015/07/uvid2.jpg" 
-                    ></video>
-                    
-                    <div class="manage-video">
-                        <a class="video-button paused" data-action="play/pause" data-video-id="second-video" href="#"></a>
-                        <progress  data-video-id="second-video" min="0" max="100" value="0"></progress>
-                        <a class="video-button fullscreen" data-action="fullscreen" data-video-id="second-video" href="#"></a>
-                    </div>
-                </div>
-                
-                <!-- Modal box for custom fullscreen-->
-                <div style="display: none;">
-                    <div class="box-modal fullscreen">
-                        <div class="fullscreen-close box-modal_close arcticmodal-close popup_cell">
-                            <img alt="Close" src="<?= get_template_directory_uri(); ?>/images/close.png">
-                        </div>
-                        <div class="video"></div>
-                    </div>
-                </div>
-            </div>
+            <?php $post = get_post(234); echo $post->post_content; ?>
             <div class="main_menu-wrapper">
                 <div class="main_menu-wrapper--inner">
                     <?php wp_nav_menu(['theme_location'=>"main-menu"]); ?>
@@ -455,7 +409,7 @@
     <div class="colored-wrapper colored-wrapper--grey colored-line">
         <div class="page__universal-wrapper">
             <h3 class="title--white">Возникли сложности? <br />
-            Позвоните нам по телефону +7 (916) 896-03-90 мы поможем рассчитать ваш ремонт
+            Позвоните нам по телефону +7 (916) 972-94-59 мы поможем рассчитать ваш ремонт
             </h3>
             
         </div>
@@ -528,47 +482,7 @@
     
     <div class="shadow-wrapper--light background-wrapper--5">
         <div class="page__universal-wrapper">
-            <h1 class="title-main_page">Примеры работ</h1>
-            <h2 class="title-main_page title-main_page--small">Расчет стоимости ремонта профессиональным сметчиком</h2>
-            <div class="gallery_line--wrapper clearfix">
-                <a class="gallery--item" href="">
-                    <img src="http://ystroi.com/images/popup/8558295633_f34a55c1c6_s.jpg" />
-                </a>
-                <a class="gallery--item" href="">
-                    <img src="http://ystroi.com/images/popup/8558295633_f34a55c1c6_s.jpg" />
-                </a>
-                <a class="gallery--item" href="">
-                    <img src="http://ystroi.com/images/popup/8558295633_f34a55c1c6_s.jpg" />
-                </a>
-            </div>
-            <div class="slider-wrapper">
-                <div class="slider-wrapper--inner">
-                    <div id="slider_main"></div>
-                </div>
-                    <script>
-                        (function($){ $(function() {
-                         $('#slider_main').Carousel([
-                                 "http://ystroi.com/images/popup/8563475581_df05e9906d_b.jpg",
-                                 "http://ystroi.com/images/popup/8563475581_df05e9906d_b.jpg",                  
-                                 "http://ystroi.com/images/popup/8563475581_df05e9906d_b.jpg",
-                                 "http://ystroi.com/images/popup/8563475581_df05e9906d_b.jpg",
-                                 "http://ystroi.com/images/popup/8558295633_f34a55c1c6_b.jpg",
-                                 "http://ystroi.com/images/popup/8559402848_9fcd90d20b_b.jpg"
-                         ], undefined, "fast");
-                        }); })(jQuery);
-                    </script>
-            </div>
-            
-            <!-- Modal box for gallery -->
-            <div style="display: none;">
-                <div id="gallery-modal" class="box-modal">
-                    <div class="box-modal_close arcticmodal-close popup_cell">
-                        <img alt="Close" src="<?= get_template_directory_uri(); ?>/images/close.png">
-                    </div>
-                    <div class="image"></div>
-                </div>
-            </div>
-            
+            <?php $post = get_post(230); echo $post->post_content; ?>
         </div>
     </div>
     <div class="page_img-wrapper">
@@ -580,7 +494,7 @@
                 </a>
             </div>
             <h1 class="title-main_page">Заказать обратный звонок</h1>
-            <h2 class="title-main_page" style="width:80%;">Оставьте свои данные, мы с вами обязательно свяжемся <br /> Вы можете позвонить нам по телефону +7 (916) 896-03-90</h1>
+            <h2 class="title-main_page" style="width:80%;">Оставьте свои данные, мы с вами обязательно свяжемся <br /> Вы можете позвонить нам по телефону +7 (916) 972-94-59</h1>
             <div class="page__universal-two_big_cols--wrapper clearfix">
                 <form id="callback_form">
                     <div class="universal_line__wrapper universal_line__wrapper--three-cols clearfix">
