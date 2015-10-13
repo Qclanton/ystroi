@@ -127,6 +127,31 @@ add_action("wp_enqueue_scripts", function() {
 
 
 
+// Maintenance
+function renderSettingClosedForMaintenance() {
+    $is_closed = get_option("closed_for_maintenance", false);
+    
+    $closed_selected = ($is_closed ? "selected='selected'" : "");
+    $opened_selected = (!$is_closed ? "selected='selected'" : "");
+  
+	$html = "
+        <select name='closed_for_maintenance'>
+            <option {$closed_selected} value='1'>Да</option>
+            <option {$opened_selected} value='0'>Нет</option>
+        </select>
+    ";
+		
+	echo $html;
+}
+
+add_action("admin_menu", function() { 
+    add_settings_field("closed_for_maintenance", "Закрыть сайт на техническое обслуживание", "renderSettingClosedForMaintenance", "general", "default");	
+	register_setting("general", "closed_for_maintenance");
+});
+
+
+
+
 
 // Date generator
 function defineDate() {

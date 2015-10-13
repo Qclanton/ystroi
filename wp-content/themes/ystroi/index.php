@@ -38,7 +38,7 @@
       document.createElement('footer');
    </script>
 <![endif]-->
-<?php if (!is_user_logged_in()) { die("Сайт закрыт на техническое обслуживание"); } ?>
+<?php if (!is_user_logged_in() && get_option("closed_for_maintenance", false)) { die("Сайт закрыт на техническое обслуживание"); } ?>
 <body>
 	<header <?= $template_part !== 'main' ? "class='header--inner'" : "" ?>>
 		<div class="page__universal-wrapper">
