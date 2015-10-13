@@ -16,18 +16,34 @@
         </div>
       
         <!-- Repair type coefficient -->
-        <h3>Коэффициенты типов ремонта</h3>
+        <h3>Типы ремонта</h3>
         <table class="form-table">
             <tbody>
                 <tr>
                     <th scope="row">
-                        <label for="options[type_coefficient][1]">Косметический ремонт</label>
+                        <label>Косметический ремонт</label>
                     </th>
+                    
+                    <th scope="row">
+                        <label for="options[type_coefficient][1]">Коэффициент:</label>
+                    </th>                    
                     <td>
                         <input 
                             name="options[type_coefficient][1]" 
                             type="text" 
                             value="<?= $type_coefficient->{1} ?>" 
+                            class="small-text"
+                        />
+                    </td>
+                    
+                    <th scope="row">
+                        <label for="">Текст: </label>
+                    </th>
+                    <td>
+                        <input 
+                            name="options[form_text][1]" 
+                            type="text" 
+                            value="<?= $form_text->{1} ?>" 
                             class="regular-text"
                         />
                     </td>                  
@@ -35,13 +51,29 @@
                 
                 <tr>
                     <th scope="row">
-                        <label for="options[type_coefficient][2]">Капитальный ремонт (эконом)</label>
+                        <label>Капитальный ремонт (эконом)</label>
                     </th>
+                    
+                    <th scope="row">
+                        <label for="options[type_coefficient][2]">Коэффициент:</label>
+                    </th>                    
                     <td>
                         <input 
                             name="options[type_coefficient][2]" 
                             type="text" 
                             value="<?= $type_coefficient->{2} ?>" 
+                            class="small-text"
+                        />
+                    </td>  
+                    
+                    <th scope="row">
+                        <label for="">Текст: </label>
+                    </th>
+                    <td>
+                        <input 
+                            name="options[form_text][2]" 
+                            type="text" 
+                            value="<?= $form_text->{2} ?>" 
                             class="regular-text"
                         />
                     </td>                  
@@ -49,13 +81,29 @@
                 
                 <tr>
                     <th scope="row">
-                        <label for="options[type_coefficient][3]">Капитальный ремонт (стандарт)</label>
+                        <label>Капитальный ремонт (стандарт)</label>
                     </th>
+                    
+                    <th scope="row">
+                        <label for="options[type_coefficient][3]">Коэффициент:</label>
+                    </th>                    
                     <td>
                         <input 
                             name="options[type_coefficient][3]" 
                             type="text" 
                             value="<?= $type_coefficient->{3} ?>" 
+                            class="small-text"
+                        />
+                    </td>
+                    
+                    <th scope="row">
+                        <label for="">Текст: </label>
+                    </th>
+                    <td>
+                        <input 
+                            name="options[form_text][3]" 
+                            type="text" 
+                            value="<?= $form_text->{3} ?>" 
                             class="regular-text"
                         />
                     </td>                  
@@ -63,13 +111,29 @@
                 
                 <tr>
                     <th scope="row">
-                        <label for="options[type_coefficient][4]">Евро ремонт</label>
+                        <label>Евро ремонт</label>
                     </th>
+                    
+                    <th scope="row">
+                        <label for="options[type_coefficient][4]">Коэффициент:</label>
+                    </th>                    
                     <td>
                         <input 
                             name="options[type_coefficient][4]" 
                             type="text" 
                             value="<?= $type_coefficient->{4} ?>" 
+                            class="small-text"
+                        />
+                    </td>
+                    
+                    <th scope="row">
+                        <label for="">Текст: </label>
+                    </th>
+                    <td>
+                        <input 
+                            name="options[form_text][4]" 
+                            type="text" 
+                            value="<?= $form_text->{4} ?>" 
                             class="regular-text"
                         />
                     </td>                  

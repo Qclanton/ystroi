@@ -3,10 +3,10 @@
         <span>Тип ремонта</span>
         <select id="repair-type">
             <option style="display: none" disabled="" selected="">Выберите</option>
-            <option value="1">Косметический ремонт от 4 000 руб</option>
-            <option value="2">Капитальный ремонт (эконом) от 5 000 руб</option>
-            <option value="3">Капитальный ремонт (стандарт) от 6 000 руб</option>
-            <option value="4">Евро ремонт от 7 500 руб.</option>
+            <option value="1"><?= $form_text->{1} ?></option>
+            <option value="2"><?= $form_text->{2} ?></option>
+            <option value="3"><?= $form_text->{3} ?></option>
+            <option value="4"><?= $form_text->{4} ?></option>
         </select>
     </div>
     <div class="calc_line__wrapper">

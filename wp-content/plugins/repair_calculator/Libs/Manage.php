@@ -4,7 +4,7 @@ namespace RepairCalculator\Libs;
 class Manage
 {
     const OPTIONS_PREFIX = "repair_calculator_";
-    const OPTIONS_LIST = "type_coefficient,formulas";
+    const OPTIONS_LIST = "type_coefficient,form_text,formulas";
     
     
     // Actions
@@ -83,6 +83,12 @@ class Manage
                 '2' => 2,
                 '3' => 3,
                 '4' => 4
+            ],
+            'form_text' => [
+                '1' => "Косметический ремонт от 4 000 руб",
+                '2' => "Капитальный ремонт (эконом) от 5 000 руб",
+                '3' => "Капитальный ремонт (стандарт) от 6 000 руб",
+                '4' => "Евро ремонт от 7 500 руб"
             ],
             'formulas' => [
                 'materials' => "{{type_coefficient}}*{{area}}*10000",
