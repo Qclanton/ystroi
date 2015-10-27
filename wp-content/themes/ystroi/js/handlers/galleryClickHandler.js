@@ -20,6 +20,6 @@
     });
     
     $('body').on('click', '.carousel-slides img', function() { 
-        showGalleryModal($(this).clone());
+        showGalleryModal($(this).clone().removeClass());
     });
 }); })(jQuery);
